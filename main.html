@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+        }
+        .header{
+            position: fixed;
+            margin: 0px;
+            width: 100%;
+            height: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(85, 107, 47);
+        }
+        .logo{
+            height: 120px;
+        }
+        .main{
+            width: 100%;
+            height: 100%;
+            padding-top: 130px;
+            display: flex;
+            flex-direction: row;
+        }
+        .nav-bar{
+            width: 300px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(162, 255, 0, 0.4);
+        }
+        .itemNav{  
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+            margin-left: 40px;
+            padding-top: 30px;
+        }
+        .itemNav:hover{
+            color:rgb(71, 94, 34)  ;
+        }
+        .sub-main{
+            width: 100%;
+            min-height: 100vh;
+            display:flex;
+            flex-direction: column;
+            background-color: rgb(177, 177, 177);
+        }
+
+        .footer{
+            display: flex;
+            justify-content: center;
+            height: 90px;
+            width: 100%;
+            background-color:rgb(85, 107, 47) ;
+            align-items: center;
+        }
+        .section1{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+            height: 60px;
+            margin-top: 30px;
+        }
+        .imgAdd{
+            width: 30px;
+            height: 30px;
+        }
+        #buscar{
+            width: 300px;
+            height: 20px;
+        }
+        #buscarLabel{
+            width: 100px;
+            height: 25px;
+            border: 0px;
+            border-radius: 5px;
+            background-color:rgb(85, 107, 47) ;
+        }
+        #buscarLabel:hover{
+            background-color:rgba(162, 255, 0, 0.4) ;
+        }
+        .section2{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding-left: 70px;
+            padding-bottom: 50px;
+        }
+        .projeto{
+            background-color: rgb(85, 107, 47) ;
+            min-width: 230px;
+            height: 100px;
+            margin: 30px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .projeto:hover{
+            background-color:rgba(162, 255, 0, 0.4) ;
+        }
+    </style>
+    <title>BetControl</title>
+</head>
+<body>
+    <div class="header">
+        <img src="./Assets/Logo1.png" class="logo">
+    </div>
+    <div class="main">
+        <div class="nav-bar">
+            <a href="#" class="itemNav">Projetos</a>
+            <a href="#" class="itemNav">Resumo Diário</a>
+            <a href="#" class="itemNav">Gestões</a>
+        </div>
+        <div class="sub-main">
+            <div class="section1">
+                <img src="./Assets/botao-adicionar.png" class="imgAdd">
+                <div class="campoBusca">
+                    <input type="text" id="buscar" name="buscar">
+                    <button id="buscarLabel">Buscar</button> 
+                </div>        
+            </div>
+            <div class="section2">
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+                <div class="projeto">
+                    <h2>Projeto ODD 1.60</h2>
+                    <p>Data de Inicio:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2025 Richard Junkes. Todos os direitos reservados.</p>
+    </div>
+    <script>
+        alert("Bem vindo Admin");
+    </script>
+</body>
+</html>
