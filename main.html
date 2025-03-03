@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body{
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
         }
         .header{
             position: fixed;
-            margin: 0px;
             width: 100%;
             height: 130px;
             display: flex;
@@ -28,16 +27,15 @@
             height: 100%;
             padding-top: 130px;
             display: flex;
-            flex-direction: row;
         }
         .nav-bar{
             width: 300px;
             min-height: 100vh;
+            background-color: rgba(162, 255, 0, 0.4);
             display: flex;
             flex-direction: column;
-            background-color: rgba(162, 255, 0, 0.4);
         }
-        .itemNav{  
+        .itemNav{
             font-size: 20px;
             text-decoration: none;
             color: black;
@@ -45,68 +43,77 @@
             padding-top: 30px;
         }
         .itemNav:hover{
-            color:rgb(71, 94, 34)  ;
+            color:rgb(71, 94, 34);
         }
         .sub-main{
             width: 100%;
             min-height: 100vh;
-            display:flex;
-            flex-direction: column;
             background-color: rgb(177, 177, 177);
-        }
-
-        .footer{
-            display: flex;
-            justify-content: center;
-            height: 90px;
-            width: 100%;
-            background-color:rgb(85, 107, 47) ;
-            align-items: center;
+            padding: 60px;
         }
         .section1{
             display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            width: 100%;
-            height: 60px;
-            margin-top: 30px;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 30px;
+            margin-right: 30px;
         }
         .imgAdd{
             width: 30px;
             height: 30px;
-        }
-        #buscar{
-            width: 300px;
-            height: 20px;
-        }
-        #buscarLabel{
-            width: 100px;
-            height: 25px;
-            border: 0px;
-            border-radius: 5px;
-            background-color:rgb(85, 107, 47) ;
-        }
-        #buscarLabel:hover{
-            background-color:rgba(162, 255, 0, 0.4) ;
+            cursor: pointer;
         }
         .section2{
+            margin-top: 30px;
+            margin-left: 30px;
             display: flex;
-            flex-direction: row;
             flex-wrap: wrap;
-            justify-content: flex-start;
-            padding-left: 70px;
-            padding-bottom: 50px;
+            gap: 20px;
         }
         .projeto{
-            background-color: rgb(85, 107, 47) ;
-            min-width: 230px;
-            height: 100px;
-            margin: 30px;
+            background-color: rgb(85, 107, 47);
+            width: 250px;
             padding: 15px;
             border-radius: 10px;
         }
         .projeto:hover{
-            background-color:rgba(162, 255, 0, 0.4) ;
+            background-color:rgb(173, 214, 102) ;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: rgb(173, 214, 102);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .buttonClass{
+            height: 25px;
+            border: 0px;
+            border-radius: 5px;
+        }
+        .campoTexto{
+            height: 25px;
+            width: 200px;
+            border: 0px;
+            border-radius:5px ;
+        
+        }
+        .footer{
+            background-color:rgb(85, 107, 47) ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
         }
     </style>
     <title>BetControl</title>
@@ -123,69 +130,66 @@
         </div>
         <div class="sub-main">
             <div class="section1">
-                <img src="./Assets/botao-adicionar.png" class="imgAdd">
-                <div class="campoBusca">
-                    <input type="text" id="buscar" name="buscar">
-                    <button id="buscarLabel">Buscar</button> 
-                </div>        
+                <img src="./Assets/botao-adicionar.png" class="imgAdd" onclick="abrirModal()">
+                <div>
+                    <input type="text" id="buscaProj" class="campoTexto" placeholder="Nome do projeto">
+                    <button class="buttonClass" onclick="buscaProjeto()">Buscar</button>
+                </div>
             </div>
-            <div class="section2">
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
-                <div class="projeto">
-                    <h2>Projeto ODD 1.60</h2>
-                    <p>Data de Inicio:</p>
-                </div>
+            <div class="section2" id="projetosContainer">
+                <!-- Projetos serão adicionados aqui -->
             </div>
         </div>
     </div>
     <div class="footer">
         <p>© 2025 Richard Junkes. Todos os direitos reservados.</p>
     </div>
+    
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>Novo Projeto</h2>
+            <input type="text" id="nomeProjeto" placeholder="Nome do Projeto">
+            <input type="date" id="dataInicio">
+            <button onclick="adicionarProjeto()">Adicionar</button>
+            <button onclick="fecharModal()">Cancelar</button>
+        </div>
+    </div>
+    
     <script>
-        alert("Bem vindo Admin");
+        function abrirModal() {
+            document.getElementById("modal").style.display = "flex";
+        }
+        function fecharModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+        function adicionarProjeto() {
+            let nome = document.getElementById("nomeProjeto").value;
+            let data = document.getElementById("dataInicio").value;
+            if (nome === "" || data === "") {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+            let container = document.getElementById("projetosContainer");
+            let novoProjeto = document.createElement("div");
+            novoProjeto.classList.add("projeto");
+            novoProjeto.innerHTML = `<h2>${nome}</h2><p>Data de Início: ${data}</p>`;
+            container.appendChild(novoProjeto);
+            fecharModal();
+        }
+        function buscaProjeto(){
+            let nomeBusca = document.getElementById("buscaProj").value.toLowerCase();
+            let projetos = document.querySelectorAll(".projeto");
+
+            projetos.forEach(projeto => {
+                let nomeProjeto = projeto.querySelector("h2").textContent.toLowerCase();
+                if (nomeProjeto.includes(nomeBusca)) {
+                    projeto.style.display = "block"; 
+                } else {
+                    projeto.style.display = "none";
+                }
+            });
+        }
     </script>
 </body>
 </html>
