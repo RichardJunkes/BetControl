@@ -31,7 +31,7 @@
         .nav-bar{
             width: 300px;
             min-height: 100vh;
-            background-color: rgba(162, 255, 0, 0.4);
+            background-color: rgb(153, 188, 93);
             display: flex;
             flex-direction: column;
         }
@@ -41,9 +41,6 @@
             color: black;
             margin-left: 40px;
             padding-top: 30px;
-        }
-        .itemNav:hover{
-            color:rgb(71, 94, 34);
         }
         .sub-main{
             width: 100%;
@@ -75,9 +72,10 @@
             width: 250px;
             padding: 15px;
             border-radius: 10px;
+            cursor: pointer;
         }
         .projeto:hover{
-            background-color:rgb(173, 214, 102) ;
+            background-color:rgb(173, 214, 102);
         }
         .modal {
             display: none;
@@ -96,24 +94,77 @@
             border-radius: 10px;
             text-align: center;
         }
-        .buttonClass{
-            height: 25px;
-            border: 0px;
-            border-radius: 5px;
+
+        .projeto-detalhes {
+            display: none;
+            margin-top: 30px;
+            margin-left: 30px;
+            margin-right: 100px;
+            padding: 20px;
+            background-color: rgb(85, 107, 47);
+            border-radius: 10px;
         }
-        .campoTexto{
-            height: 25px;
-            width: 200px;
-            border: 0px;
-            border-radius:5px ;
-        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: rgb(153, 188, 93);
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 5px;
+            text-align: center;
+            font-size: 18px;
+        }
+        .atributo{
+            border: 0.5px;
+            font-size: 18px;
+            text-align: center;
+            background-color: rgb(153, 188, 93);
         }
         .footer{
-            background-color:rgb(85, 107, 47) ;
+            background-color:rgb(85, 107, 47);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 80px;
+        }
+        select{
+            border: 0px;
+            border-radius: 2px;
+            background-color:rgb(153, 188, 93) ;
+            font-size: 18px;
+        }
+        .pendente{
+            background-color: rgb(153, 188, 93);
+        }
+        .vencida{
+            background-color: green;
+        }
+        .perdida{
+            background-color: red;
+        }
+        button{
+            border: 1px;
+            border-style: solid;
+            border-color: black;
+            width:100px;
+            height: 26px;
+            font-size: 16px;
+            background-color: rgb(153, 188, 93);
+        }
+        button:active{
+            background-color: rgb(85, 107, 47);
+        }
+        input{
+            width: 200px;
+            height: 22px;
+            border: 1px;
+            border-style: solid;
+            border-color: black;
+            font-size: 16px;
         }
     </style>
     <title>BetControl</title>
@@ -124,7 +175,7 @@
     </div>
     <div class="main">
         <div class="nav-bar">
-            <a href="#" class="itemNav">Projetos</a>
+            <a href="main.html" class="itemNav">Projetos</a>
             <a href="#" class="itemNav">Resumo Diário</a>
             <a href="#" class="itemNav">Gestões</a>
         </div>
@@ -138,6 +189,32 @@
             </div>
             <div class="section2" id="projetosContainer">
                 <!-- Projetos serão adicionados aqui -->
+            </div>
+            <div id="projetoDetalhes" class="projeto-detalhes">
+                <h2 id="tituloProjeto"></h2>
+                <p id="dataProjeto"></p>
+
+                <!-- Tabela de Apostas -->
+                <table id="tabelaApostas">
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Valor</th>
+                            <th>Cotação</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Apostas serão adicionadas aqui -->
+                        <td><button onclick="removerAposta(this)" class="atributo">Excluir</button></td>
+                    </tbody>
+                </table>
+                <br>
+
+                <!-- Botões -->
+                <button onclick="adicionarAposta()">Adicionar</button>
+                <button onclick="fecharDetalhes()">Fechar</button>
             </div>
         </div>
     </div>
@@ -157,6 +234,9 @@
     </div>
     
     <script>
+        let projetos = {};
+        let projetoAtual = "";
+    
         function abrirModal() {
             document.getElementById("modal").style.display = "flex";
         }
@@ -170,26 +250,99 @@
                 alert("Por favor, preencha todos os campos.");
                 return;
             }
+            projetos[nome] = [];
             let container = document.getElementById("projetosContainer");
             let novoProjeto = document.createElement("div");
             novoProjeto.classList.add("projeto");
             novoProjeto.innerHTML = `<h2>${nome}</h2><p>Data de Início: ${data}</p>`;
+            novoProjeto.onclick = function () {
+                abrirDetalhes(nome);
+            };
             container.appendChild(novoProjeto);
             fecharModal();
         }
-        function buscaProjeto(){
-            let nomeBusca = document.getElementById("buscaProj").value.toLowerCase();
+        function buscaProjeto() {
+            let termoBusca = document.getElementById("buscaProj").value.toLowerCase();
             let projetos = document.querySelectorAll(".projeto");
-
+    
             projetos.forEach(projeto => {
                 let nomeProjeto = projeto.querySelector("h2").textContent.toLowerCase();
-                if (nomeProjeto.includes(nomeBusca)) {
-                    projeto.style.display = "block"; 
-                } else {
-                    projeto.style.display = "none";
-                }
+                projeto.style.display = nomeProjeto.includes(termoBusca) ? "block" : "none";
             });
         }
+    
+        function abrirDetalhes(nome) {
+            projetoAtual = nome;
+            document.getElementById("tituloProjeto").textContent = nome;
+            let tabela = document.querySelector("#tabelaApostas tbody");
+            tabela.innerHTML = ""; // Limpa a tabela antes de preencher
+
+            projetos[nome].forEach((aposta, index) => {
+                let linha = tabela.insertRow();
+                linha.innerHTML = `
+                    <td>${aposta.dia}</td>
+                    <td>${aposta.valor}</td>
+                    <td>${aposta.cotacao}</td>
+                    <td>
+                        <select onchange="alterarStatus(this, ${index})">
+                            <option value="Pendente" ${aposta.status === "Pendente" ? "selected" : ""} class="pendente">Pendente</option>
+                            <option value="Vencida" ${aposta.status === "Vencida" ? "selected" : ""} class="vencida">Vencida</option>
+                            <option value="Perdida" ${aposta.status === "Perdida" ? "selected" : ""} class="perdida">Perdida</option>
+                        </select>
+                    </td>
+                    <td><button onclick="removerAposta(${index})" class="atributo">Excluir</button></td>
+                `;
+
+                // Aplica a cor correta imediatamente
+                alterarCor(linha.querySelector("select"));
+            });
+
+            document.getElementById("projetoDetalhes").style.display = "block";
+        }
+    
+        function fecharDetalhes() {
+            document.getElementById("projetoDetalhes").style.display = "none";
+        }
+    
+        function adicionarAposta() {
+            if (!projetoAtual) return;
+
+            let dia = prompt("Data da aposta:");
+            let valor = prompt("Valor da aposta:");
+            let cotacao = prompt("Cotação:");
+
+            if (!dia || !valor || !cotacao) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            projetos[projetoAtual].push({ dia, valor, cotacao, status: "Pendente" });
+
+            abrirDetalhes(projetoAtual);
+        }
+    
+        function removerAposta(index) {
+            if (!projetoAtual || !projetos[projetoAtual]) return;
+    
+            projetos[projetoAtual].splice(index, 1); // Remove a aposta pelo índice
+            abrirDetalhes(projetoAtual); // Atualiza a tabela
+        }
+        function alterarStatus(select, index) {
+            if (!projetoAtual || !projetos[projetoAtual]) return;
+
+            projetos[projetoAtual][index].status = select.value;
+            alterarCor(select);
+        }
+        function alterarCor(select) {
+            if (select.value === "Vencida") {
+                select.style.backgroundColor = "green";
+            } else if (select.value === "Perdida") {
+                select.style.backgroundColor = "red";
+            } else {
+                select.style.backgroundColor = "";
+            }
+        }
     </script>
+    
 </body>
 </html>
